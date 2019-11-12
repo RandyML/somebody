@@ -1,0 +1,67 @@
+<% include partials/header %>
+
+
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-7">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>n°</th>
+                        <th>Nombre</th>
+                        <th>ApellidoP</th>
+                        <th>ApellidoM</th>
+                        <th>User</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%if(data){%>
+                        <%for(var i=0;i<data.length;i++){%>
+                            <tr>
+                                <td><%= (i+1)%></td>
+                                <td><%= data[i].nombre%></td>
+                                <td><%= data[i].apellidoP%></td>
+                                <td><%= data[i].apellidoM%></td>
+                                <td><%= data[i].user%></td>
+                                <td>
+                                    <a href="/delete/<%= data[i].adminId %>" class="btn btn-danger">Eliminar</a>
+                                    <a href="/update/<%= data[i].adminId %>" class="btn btn-success">Editar</a>
+                                </td>
+                                
+                            </tr>
+                            
+                            <% } %>
+                        <% } %>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+                        <form action="/add" method="POST">
+                            <div class="form-group">
+                                <input type="text" name="nombre" placeholder="nombre" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="apellidoP" placeholder="Apellido Paterno" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="apellidoM" placeholder="Apellido Materno" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="user" placeholder="Usuario" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="password" placeholder="Password" class="form-control">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                        </form> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include partials/footer %>
